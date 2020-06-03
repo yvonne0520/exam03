@@ -184,13 +184,12 @@ void acc(void)
     t[2] = ((float)acc16) / 4096.0f;
 
     pc.printf("%1.4f\r\n%1.4f\r\n%1.4f\r\n", t[0], t[1], t[2]);
-    count++;
 
-    if (t[0] > 0.5 || t[0] < -0.5 || t[1] > 0.5 || t[1] < -0.5)
-      wait(0.1);
-    else
-      wait(0.5);
-
+    float temp = pow((pow(t[0], 2) + pow(t[1], 2)), 0.5);
+    velocity = temp * 0.1;
+    count++;    
+    pc.printf("velocity : %.4f\n", velocity);
+    wait(0.1);
   }
 }
 
