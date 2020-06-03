@@ -10,26 +10,12 @@ host = "localhost"
 topic= "Mbed"
 port = 1883
 
-velocity_list = []
-count = 0
-
-Fs = 2.0
-Ts = 1.0 / Fs
-time_vec = np.arange(0, 20, Ts)
-velocity_vec = np.arange(0, 20, Ts)
-
 # Callbacks
 def on_connect(self, mosq, obj, rc):
     print("Connected rc: " + str(rc))
 
 def on_message(mosq, obj, msg):
-    global count
-    print('count = ', end = '')
-    print(count)
     print("[Received] Topic: " + msg.topic + ", Message: " + str(msg.payload) + "\n")
-
-    velocity_list.append(int(msg.payload))
-    count += 1
     
 def on_subscribe(mosq, obj, mid, granted_qos):
     print("Subscribed OK")
