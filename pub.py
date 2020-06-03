@@ -56,19 +56,12 @@ print(char.decode())
 
 print("start sending RPC")
 all_string = []
-count = [2] * 40
 
-for i in range(60):
-    # send RPC to remote
-    s.write("/GetData/run\r".encode())
-    time.sleep(0.1)
-
-    if i >= 2:
-        indata = s.readline()
-        print(indata.split())
-        all_string.append(indata)
-        
-print(all_string)
+s.write("/GetData/run\r".encode())
+for i in range(1000):
+    indata = s.readline()
+    all_string.append(indata)
+print(indata)
         
 # Callbacks
 def on_connect(self, mosq, obj, rc):
