@@ -7,7 +7,7 @@ mqttc = paho.Client()
 
 # Settings for connection
 host = "localhost"
-topic= "Mbed"
+topic= "velocity"
 port = 1883
 
 # Callbacks
